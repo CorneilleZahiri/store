@@ -1,13 +1,20 @@
 package com.formationMosh.store;
 
+import com.formationMosh.store.entities.User;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
 public class StoreApplication {
 
-	public static void main(String[] args) {
-		SpringApplication.run(StoreApplication.class, args);
-	}
+    public static void main(String[] args) {
+        SpringApplication.run(StoreApplication.class, args);
+        User user = new User();
+        user.setName("Corneille");
+        user.setEmail("cgbeaga@gmail.com");
+        user.setPassword("test");
+
+        System.out.println(user);
+    }
 
 }
