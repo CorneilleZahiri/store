@@ -1,34 +1,28 @@
 package com.formationMosh.store.entities;
 
-
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
-@Table(name = "profiles")
+@Table(name = "category")
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class Profie {
+public class Category {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "bio")
-    private String bio;
+    @Column(name = "name")
+    private String name;
 
-    @Column(name = "phone_number")
-    private String phone_number;
-
-    @Column(name = "date_of_birth")
-    private Date date_of_birth;
-
-    @Column(name = "loyalty_points")
-    private Integer loyalty_points;
+    @OneToMany(mappedBy = "category")
+    private Set<Product> productList = new HashSet<>();
 }
