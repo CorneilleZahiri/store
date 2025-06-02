@@ -30,7 +30,7 @@ public class User {
     private String password;
 
     @OneToMany(mappedBy = "user")
-    private List<Adress> adressList = new ArrayList<>();
+    private List<Adress> adresses = new ArrayList<>();
 
     @ManyToMany
     @JoinTable(
@@ -38,8 +38,17 @@ public class User {
             joinColumns = @JoinColumn(name = "user_id"),
             inverseJoinColumns = @JoinColumn(name = "tag_id")
     )
-    private Set<Tag> tagSet = new HashSet<>();
+    private Set<Tag> tags = new HashSet<>();
 
     @OneToOne(mappedBy = "user")
     private Profile profile;
+
+    @ManyToMany
+    @JoinTable(
+            name = "wishlist",
+            joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "product_id")
+    )
+    private Set<Product> favoriteProducts = new HashSet<>();
+
 }

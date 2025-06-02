@@ -19,8 +19,8 @@ public class StoreApplication {
         Tag tag = new Tag();
         tag.setName("Tag1er");
 
-        tag.getUserSet().add(user);
-        user.getTagSet().add(tag);
+        tag.getUsers().add(user);
+        user.getTags().add(tag);
 
         System.out.println(user);
         System.out.println(tag);

@@ -52,3 +52,11 @@ price double default 0.0,
 category_id bigint not null,
 foreign key (category_id) references category (id) on delete cascade
 );
+
+create table wishlist(
+user_id bigint not null,
+product_id bigint not null,
+primary key (user_id, product_id),
+foreign key (user_id) references users(id) on delete cascade,
+foreign key (product_id) references product(id) on delete cascade
+);
