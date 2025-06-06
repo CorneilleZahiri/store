@@ -32,8 +32,9 @@ public class Profile {
     @Column(name = "loyalty_points")
     private Integer loyalty_points;
 
-    @OneToOne
-    @JoinColumn(name = "id")
-    @MapsId
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "user_id")
+    //@JoinColumn(name = "id")
+    //@MapsId
     private User user;
 }
