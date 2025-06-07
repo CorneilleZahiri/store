@@ -17,6 +17,12 @@ user_id bigint not null,
 foreign key (user_id) references users(id)
 );
 
+<!--  Modifier la clé étrangère user_id sur on delete cascade -->
+
+<!-- alter table addresses drop constraint `addresses_ibfk_1`; SUPPRIMER CETTE CONTRAINTE SI ELLE EXISTE -->
+alter table addresses add constraint `addresses_ibfk_2`
+FOREIGN KEY (user_id) REFERENCES users (id) on delete cascade;
+
 CREATE TABLE profiles(
 id bigint primary key not null auto_increment,
 bio text,

@@ -29,7 +29,7 @@ public class User {
     @Column(name = "password")
     private String password;
 
-    @OneToMany(mappedBy = "user", cascade = CascadeType.PERSIST)
+    @OneToMany(mappedBy = "user", cascade = {CascadeType.PERSIST, CascadeType.REMOVE})
     private List<Adress> adresses = new ArrayList<>();
 
     @ManyToMany
@@ -40,7 +40,7 @@ public class User {
     )
     private Set<Tag> tags = new HashSet<>();
 
-    @OneToOne(mappedBy = "user")
+    @OneToOne(mappedBy = "user", cascade = {CascadeType.PERSIST, CascadeType.REMOVE})
     private Profile profile;
 
     @ManyToMany

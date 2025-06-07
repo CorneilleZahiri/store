@@ -21,4 +21,10 @@ public class AdresseService {
         return adresseRepository.findById(id).orElse(null);
     }
 
+    @Transactional
+    public void deleteAdresseById(Long id) {
+        adresseRepository.deleteById(id);
+        System.out.println("Adresse supprimée");
+    }
+
 }
