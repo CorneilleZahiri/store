@@ -7,7 +7,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.util.Date;
+import java.time.LocalDate;
 
 @Entity
 @Table(name = "profiles")
@@ -27,7 +27,7 @@ public class Profile {
     private String phone_number;
 
     @Column(name = "date_of_birth")
-    private Date date_of_birth;
+    private LocalDate date_of_birth;
 
     @Column(name = "loyalty_points")
     private Integer loyalty_points;
@@ -37,4 +37,15 @@ public class Profile {
     //@JoinColumn(name = "id")
     //@MapsId
     private User user;
+
+    @Override
+    public String toString() {
+        return "Profile{" +
+                "id=" + id +
+                ", bio='" + bio + '\'' +
+                ", phone_number='" + phone_number + '\'' +
+                ", date_of_birth=" + date_of_birth +
+                ", loyalty_points=" + loyalty_points +
+                '}';
+    }
 }

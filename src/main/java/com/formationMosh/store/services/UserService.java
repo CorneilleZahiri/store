@@ -1,5 +1,6 @@
 package com.formationMosh.store.services;
 
+import com.formationMosh.store.dtos.UserSummary;
 import com.formationMosh.store.entities.Adress;
 import com.formationMosh.store.entities.User;
 import com.formationMosh.store.repositories.AdresseRepository;
@@ -9,6 +10,8 @@ import jakarta.persistence.EntityManager;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.List;
 
 @Service
 @AllArgsConstructor
@@ -67,5 +70,29 @@ public class UserService {
         User user = this.getById(idUser);
         productRepository.findAll().forEach(product -> user.getFavoriteProducts().add(product));
         this.addUser(user);
+    }
+
+    @Transactional
+    public void fetchByEmail() {
+        User u = userRepository.findByEmail("cgbeaga@gmail.com").orElse(null);
+        assert u != null;
+        System.out.println(u.getName());
+    }
+
+    @Transactional
+    public void allUser() {
+        List<User> users = userRepository.findAllWithAdresses();
+        users.forEach(user -> {
+            System.out.println(user);
+            user.getAdresses().forEach(System.out::println);
+        });
+    }
+
+    @Transactional
+    public void findUserLoyalty() {
+        List<UserSummary> userSummaries = userRepository.findUserLoyalty(2);
+        userSummaries.forEach(userSummary -> {
+            System.out.println(userSummary.getId() + " : " + userSummary.getEmail());
+        });
     }
 }
