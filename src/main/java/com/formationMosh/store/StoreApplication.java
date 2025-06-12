@@ -20,7 +20,7 @@ public class StoreApplication {
         ProfileService profileService = applicationContext.getBean(ProfileService.class);
 
         //Product sorted
-        productService.getPaginateProducts(0, 20);
+        productService.getAllProductSortedAndPagine(0, 7, "name", "ASC");
 
         //Users
         //userService.findUserLoyalty();

@@ -73,4 +73,16 @@ public class ProductService {
         productList.forEach(product -> System.out.println(product.getName() + " =>" + product.getPrice()));
 
     }
+
+    @Transactional
+    public void getAllProductSortedAndPagine(int pageNumber, int size, String name, String direction) {
+        Sort sort = direction.equalsIgnoreCase("asc") ? Sort.by("name") : Sort.by("name").descending();
+        PageRequest pageRequest = PageRequest.of(pageNumber, size, sort);
+        Page<Product> productPage = productRepository.findAll(pageRequest);
+
+        List<Product> productList = productPage.getContent();
+
+        productList.forEach(product ->
+                System.out.println(product.getId() + " : " + product.getName() + " : " + product.getCategory().getName().toUpperCase()));
+    }
 }
